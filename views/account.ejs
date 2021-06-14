@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Account</title>
+	<link rel="stylesheet" type="text/css" href="/css/account.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="icon" type="" href="images/logIn.ico">
+	<style type="text/css">
+		body{
+			background-image: none;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/"><i class="fas fa-pizza-slice"></i></a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="/#contact-title">Contact Us</a></li>
+				<% if(loggedIn){%>
+				<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+				<li><a href="/cart"><i class="fas fa-cart-plus"></i>Cart</a></li>
+				<%}else{%>
+				<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+				<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+				<%}%>
+			</ul>
+		</nav>
+		<nav class="nav-mob">
+			<div class="nav-mob-div">
+				<div>
+					<a class="brand"href="#"><i class="fas fa-pizza-slice"></i></a>
+					<a href="#"onclick="myFunction()"><i class="fas fa-bars"></i></a>
+				</div>
+			</div>
+			<div class="myLinks">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/#contact-title">Contact Us</a></li>
+					<% if(loggedIn){%>
+					<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+					<li><a href="/cart"><i class="fas fa-cart-plus"></i>Cart</a></li>
+					<%}else{%>
+					<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+					<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+					<%}%>
+				</ul>
+  			</div>
+		</nav>
+	</header>
+	<div class="container"style="margin-top:80px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fb-profile-block">
+                <div class="fb-profile-block-thumb cover-container"></div>
+                <div class="profile-img">
+                    <a href="#">
+                        <img src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png" alt="" title="">        
+                    </a>
+                </div>
+                <div class="profile-name">
+                    <h2><%=locals.user.email%></h2>
+                </div>
+                
+                <div class="fb-profile-block-menu">
+                    <div class="block-menu">
+                        <ul>
+                            <li><a href="/order">My orders</a></li>
+                            <li><a href="/address">Address</a></li>
+                            <li><a href="/signout">LogOut</a></li>
+                        </ul>
+                    </div>
+                    <div class="block-menu">
+                        <ul><li><a href="/order">My orders</a></li>
+                            <li><a href="/address">Address</a></li>
+                            <li><a href="/signout">Log Me Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/js/home.js"></script>
+
+</body>
+</html> 

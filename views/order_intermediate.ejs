@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+<body>
+	<h2>Redirecting: </h2>
+	<form action="/order-intermediate"name="autoSubmit" method="POST">
+		<input type="hidden" name="orderId"value="<%=paramlist.ORDERID%>">
+		<input type="hidden"name="txnId"value="<%=paramlist.TXNID%>">
+		<input type="hidden"name="txnDate"value="<%=paramlist.TXNDATE%>">
+		<input type="hidden"name="txnStatus"value="<%=paramlist.STATUS%>">
+		<input type="hidden"name="bank"value="<%=paramlist.BANKNAME%>">
+	</form>
+	<script type="text/javascript">
+		window.onload = function(){
+  document.forms['autoSubmit'].submit();
+}
+	</script> 
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Orders</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<meta name="viewport"content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/css/cart.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="manifest" href="images/site.webmanifest">
+	<style type="text/css">
+		body{
+			font-size:0.75rem;
+		}
+		.margin{
+			margin-top:20px;
+			margin-bottom:20px;
+		}
+	</style>
+</head>
+<body>
+		<div class="container text-white py-5 text-center">
+    <h1 class="display-4">Orders</h1>
+    <p class="lead mb-0"><a href="/"class="text-white font-italic"><u>Continue Shopping</u></a></p>
+    <p class="lead">Go to<a href="/" class="text-white font-italic">
+            <u>Home</u></a>
+    </p>
+  </div>
+  <!-- <h1 class="ceneter">My Orders</h1> -->
+  <div class="container">
+		<%for(let i=allOrders.length-1;i>=0;i--){%>
+		<div class="row border"style="margin-top:10px;background-color: white;opacity:0.9">
+		<div class="col col-sm-12">
+			<div class="row margin" >
+			<div class="col">Od_id: <%=allOrders[i].orderId %></div>
+			<div class="col">Txn_id: <%=allOrders[i].txnId %></div>
+		</div>
+			<div class="row margin">
+			<div class="col col-lg-6"><h3><img width="70"class="img-fluid rounded shadow-sm"src="<%=allOrders[i].itemImage%>"><%=allOrders[i].itemName%></h3></div>
+			<div class="col"><h5>Quantity:<%=allOrders[i].quantity%></h5></div>
+			 <div class="col"><h5>Price:<%=allOrders[i].amount%>-/-</h5></div>
+			</div>
+			<div class="row margin" >
+				<div class="col col-lg-1.8 col-sm-3.5">
+					<p>Restaurant:<%=allOrders[i].restaurantName%>  </p>
+				</div>
+				<div class="col col-lg-1.8 col-sm-3.5"><p>Amount:<%=allOrders[i].amount*allOrders[i].quantity+parseInt(allOrders[i].delivery)%></p></div>
+				<div class="col col-lg-2 col-sm-4">
+					<p>Status:<%=allOrders[i].status%></p>
+				</div>
+				<div class="col col-lg-2.4 col-sm-5"><p>Placed:<%=allOrders[i].txnDate%></p></div>
+				<div class="col col-lg-2 col-sm-4">
+					<p>Delivery Charge:<%=allOrders[i].delivery%></p>
+				</div>
+				<div class="col col-lg-2 col-sm-4">
+					<p>Delivery Time:<%=allOrders[i].deliveryTime%> min</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%}%>
+	</div>
+
+
+</body>
+</html>

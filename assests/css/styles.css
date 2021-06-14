@@ -1,0 +1,177 @@
+body{
+	margin:0px;
+	padding:0px;
+	}
+header{
+	margin-top: 0;
+	height:75vh;
+	background-image: url("/images/header.jpg");
+	background-size: cover;
+	background-position: center;
+	opacity: 1;
+	background-attachment: fixed;
+}
+nav{
+	background-color: red;
+	position: fixed;
+	margin-top:0;
+	top:0;
+	width:100%;
+	opacity: 0.9;
+}
+nav ul{
+	list-style-type: none;
+	text-align: center;
+	margin:0;
+}
+nav ul li{
+	font-size: 1.2rem;
+	text-decoration: none;
+	margin-right: 8%;
+	padding: 15px;
+	display: inline-block;
+}
+nav ul li a{
+	color:white;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	line-height: 1.1rem;
+	padding:10px;
+	text-decoration: none;
+	transition-duration: 1s;
+}
+nav ul li a:hover{
+	color: grey;
+}
+
+/*adding mob header*/
+.nav-mob{
+	display: none;
+	position: fixed;
+	margin-top:0;
+	top:0;
+	width:100%;
+	opacity: 0.9;
+	color: white;
+}
+.nav-mob-div{
+	background-color: red;
+}
+.nav-mob-div div{
+	font-size: 1rem;
+	width:80%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+}
+.nav-mob div a{
+	color: white;
+	padding: 0px;
+}
+.brand{
+	margin-right: 10%;
+}
+.myLinks{
+	display: none;
+	width:0px;
+}
+.nav-mob-toggler{
+	display: block;
+	width:200px;
+	background-color: red;
+	position: absolute;
+	right:0;
+	display: block;
+}
+@media only screen and (max-width: 1080px) {
+  nav{
+    display: none
+  }
+  .nav-mob{
+  	display: block;
+  }
+}
+
+main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+#restaurant-list{
+	width:70%;
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-between; 
+}
+.restaurant{
+	width:300px;
+	margin-bottom:50px;
+}
+.restaurant img{
+	width:100%;
+	height:300px;
+	border-radius: 1rem;
+}
+.restaurant a{
+	text-decoration: none;
+	color: black;
+
+}
+.restaurant h3{
+	color: purple;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+}
+.restaurant p{
+	text-decoration: none;
+	color: black;
+	margin-top: 0px;
+
+}
+footer{
+	display:flex;
+	flex-direction: column;
+	background: linear-gradient(#2857a4,#403066);
+	align-items: center;
+	color:white;
+}
+#contact-title{
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.5rem;
+}
+#all-details{
+	width:70%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+#message input{
+	font-size:1.1rem;
+	padding:0.1rem;
+	display: block;
+	background-color: inherit;
+	border:0px;
+	border-bottom: 2px solid lightgrey;
+	margin-bottom:20px;
+}
+.social-icons ul{
+	list-style-type: none;
+}
+.social-icons li{
+	display: inline-block;
+	border-radius: 50%;
+	margin:20px;
+	padding:0.2rem;
+}
+.social-icons li a{
+	color: white;
+}
+.social-icons li:hover{
+	box-shadow: 0px 0px 4px 6px lightgrey;
+}

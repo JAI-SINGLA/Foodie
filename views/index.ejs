@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tomato</title>
+	<meta name="viewport"content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="manifest" href="images/site.webmanifest">
+	<title>Zomato</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/"><i class="fas fa-pizza-slice"></i></a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="#contact-title">Contact Us</a></li>
+				<% if(loggedIn){%>
+				<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+				<li><a href="/cart"><i class="fas fa-cart-plus"></i>Cart</a></li>
+				<%}else{%>
+				<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+				<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+				<%}%>
+			</ul>
+		</nav>
+		<nav class="nav-mob">
+			<div class="nav-mob-div">
+				<div>
+					<a class="brand"href="#"><i class="fas fa-pizza-slice"></i></a>
+					<a href="#"onclick="myFunction()"><i class="fas fa-bars"></i></a>
+				</div>
+			</div>
+			<div class="myLinks">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/#contact-title">Contact Us</a></li>
+					<% if(loggedIn){%>
+					<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+					<li><a href="/user/cart"><i class="fas fa-user-plus"></i>Cart</a></li>
+					<%}else{%>
+					<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+					<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+					<%}%>
+				</ul>
+  			</div>
+		</nav>
+		<div id="header-content "></div>
+	</header>
+	<main>
+		<h1>List of Restaurants:</h1>
+		<div id="restaurant-list">
+			<%if(loggedIn && locals.user.address.length>0){%>
+			<%for(let i of restuarants){%>
+			<%for(let j of i.delivery){%>
+				<%if(j.pincode==locals.user.address[0].pincode && j.area.split(" ").join("").toLowerCase()==locals.user.address[0].area.split(" ").join("").toLowerCase()){%>
+				<div class="restaurant">
+				<a href="<%='/restaurants/name/'+i._id %>"><img src="<%=i.image%>">
+				<h3><%=i.name%></h3>
+				</a>
+			</div>
+			<%break%>
+			<%}}}}else{%>
+		 	<%for(let i of restuarants){%>
+		 	<div class="restaurant">
+				<a href="<%='/restaurants/name/'+i._id %>"><img src="<%=i.image%>">
+				<h3><%=i.name%></h3>
+				</a>
+			</div>
+		<%}}%>
+			<!-- <div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div>
+			<div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div>
+			<div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div>
+			<div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div>
+			<div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div>
+			<div class="restaurant">
+				<a href=""><img src="images/pizza.jpg">
+				<h3>PIZZA HUB</h3>
+				<p>
+					Pizza,Burger,Fast Food
+				</p></a>
+			</div> -->
+		</div>
+	</main>
+	<footer>
+		<div id="contact-title">
+			<h1>Contact us</h1>
+		</div>
+		<div id="all-details">
+			<div id="message">
+			<h2>Help Us Improve</h2>
+				<form>
+					<input type="text" name=""placeholder="Your Name">
+					<input type="email" name=""placeholder="Your Email">
+					<input type="text" name=""placeholder="Your Message">
+					<button type="submit">Send Us</button>
+				</form>
+			</div>
+			<div id="our-details">
+				<h2>Get in Touch</h2>
+				<p>jcdiugciuefrgf89ergfo8egfvo8egfoegvgowegvwrev</p>
+				<div id="our-address">
+					<h2>Our Address</h2>
+					<p><i class="fas fa-map-marker-alt"></i>&nbsp; Narwana,Haryana,India </p>
+					<p><i class="fas fa-phone-square-alt"></i>&nbsp; 9728569301 </p>
+					<p><i class="far fa-envelope"></i>&nbsp; jaisinglanrw@gmail.com </p>
+				</div>
+			</div>
+	    </div>
+	    <div class="social-icons">
+	    	<ul>
+					<li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+					<li><a href=""><i class="fab fa-stack-overflow"></a></i></li>
+					<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+					<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+					<li><a href=""><i class="fab fa-quora"></i></a></li>
+				</ul>
+	    </div>
+	</footer>
+	<script type="text/javascript" src="/js/home.js"></script>
+
+</body>
+</html>

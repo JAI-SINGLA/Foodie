@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User|Cart</title>
+	<meta name="viewport"content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/cart.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+	<link rel="manifest" href="images/site.webmanifest">
+</head>
+<body>
+
+
+	<div class="px-4 px-lg-0">
+  <!-- For demo purpose -->
+  <div class="container text-white py-5 text-center">
+    <h1 class="display-4">Shopping cart</h1>
+    <p class="lead mb-0"><a href="/"class="text-white font-italic"><u>Continue Shopping</u></a></p>
+    <p class="lead">Go to<a href="/" class="text-white font-italic">
+            <u>Home</u></a>
+    </p>
+  </div>
+  <!-- End -->
+  <%var flag=1;%>
+  <%if(locals.user.address.length==0){%>
+    <%flag=0;%>
+<%}%>
+  <% var totalPrice=0;var deliveryPrice=0;var deliveryRes=new Array();var allDetails=new Array();%> 
+
+  <div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+
+          <!-- Shopping cart table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Product</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Quantity</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Remove</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+              	<% for(i=0;i<restaurantName.length;i++){ %>
+                  <%if(!item[i]){continue;}%>
+              	<tr>
+              		<th scope="row" class="border-0">
+                    <div class="p-2">
+                      <img src="<%=item[i].itemImage%>" alt="" width="70" class="img-fluid rounded shadow-sm">
+                      <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"> <a href="<%='/restaurants/name/'+restaurantName[i]._id%>" class="text-dark d-inline-block align-middle"><%=item[i].itemName%></a></h5>
+                <% if (!deliveryRes.includes(restaurantName[i].id)){%>
+                  <% var currentFlag=0;%>
+                  <%for(j of restaurantName[i].delivery){%>
+                  <%if(locals.user.address.length==0){%>
+                  <%currentFlag=0;%>
+                  <%break;%>
+                  <%}%>
+                  <%if(j.pincode==locals.user.address[0].pincode && j.area==locals.user.address[0].area){%>
+                    <%deliveryPrice+=j.price;%>
+                    <% totalPrice+=(quantity[i]*item[i].itemPrice);%>
+                    <%deliveryRes.push(restaurantName[i].id);%>
+                    <span class="text-muted font-weight-normal font-italic d-block">Restaurant: <%=restaurantName[i].name%> Delivery:<%=j.time%> min</span>
+                    <%currentFlag=1;%>
+                <%}}if(currentFlag==0){%>
+                      <span style="color:red;" class="font-weight-normal font-italic d-block">Restaurant: <%=restaurantName[i].name%> Delivery:Not Deliverable</span>
+                <%flag=0;%>
+              <%}%>
+                <%}else{%>
+                   <%for(j of restaurantName[i].delivery){%>
+                  <%if(j.pincode=locals.user.address[0].pincode && j.area==locals.user.address[0].area){%>
+                  <% totalPrice+=(quantity[i]*item[i].itemPrice);%>
+                    <span class="text-muted font-weight-normal font-italic d-block">Restaurant: <%=restaurantName[i].name%> Delivery:<%=j.time %>min</span>
+                    <%}}%>
+              <%}%>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="border-0 align-middle"><strong><%=item[i].itemPrice%></strong></td>
+                  <%if(quantity[i]<=1){%>
+                    <td class="border-0 align-middle"><strong><a style="color:black;pointer-events: none;opacity:0.5;"href="<%='/cart/item/minus/'+restaurantName[i]._id+'/'+item[i]._id+'/'+quantity[i]%>"><i class="fas fa-minus"> </i></a> <%=quantity[i]%> <a style="color:black"href="<%='/cart/item/plus/'+restaurantName[i]._id+'/'+item[i]._id+'/'+quantity[i]%>"> <i class="fas fa-plus"></i></a></strong></td>
+                <%}else{%>
+                <td class="border-0 align-middle"><strong><a style="color:black"href="<%='/cart/item/minus/'+restaurantName[i]._id+'/'+item[i]._id+'/'+quantity[i]%>"><i class="fas fa-minus"> </i></a> <%=quantity[i]%> <a style="color:black"href="<%='/cart/item/plus/'+restaurantName[i]._id+'/'+item[i]._id+'/'+quantity[i]%>"> <i class="fas fa-plus"></i></a></strong></td>
+              <%}%>
+                <td class="border-0 align-middle"><a href="<%='/cart/item/delete/'+restaurantName[i]._id+'/'+item[i]._id%>" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                <%}%>
+              </tbody>
+            </table>
+          </div>
+          <!-- End -->
+        </div>
+      </div>
+
+      <div class="row py-5 p-4 bg-white rounded shadow-sm">
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
+          <div class="p-4">
+            <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
+            <div class="input-group mb-4 border rounded-pill p-2">
+              <input type="text" placeholder="Apply coupon" aria-describedby="button-addon3" class="form-control border-0">
+              <div class="input-group-append border-0">
+                <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Apply coupon</button>
+              </div>
+            </div>
+          </div>
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Information</div>
+          <div class="p-4">
+          <p class="font-italic mb-4">Please Check all details of pricing and shipping price carefully befor proceeding.</p>
+            <!-- <textarea name="" cols="30" rows="2" class="form-control"></textarea> -->
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+          <div class="p-4">
+            <!-- <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p> -->
+            <%if(locals.user.address.length==0){%>
+            <p class="font-italic mb-4">Hi! Add Address First <a href="">Add Address</a></p>
+          <%}else if(flag==0){%>
+              <p class="font-italic mb-4" style="color:red">Hi! There are some Problem with Delivery! Please review you cart.</p>
+            <%}else{%>
+              <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.Deliver to:<%= locals.user.address[0].name%>,
+              <%=locals.user.address[0].details%>, <%=locals.user.address[0].area%>,<%=locals.user.address[0].pincode%>
+          <%}%>
+            <ul class="list-unstyled mb-4">
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong><%=totalPrice%></strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong><%=deliveryPrice%></strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>0.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                <h5 class="font-weight-bold"><%= parseInt(deliveryPrice)+parseInt(totalPrice)%></h5>
+              </li>
+              <%if(flag && parseInt(totalPrice)>0){%>
+              <%=allDetails%>
+              <form action="/paynow" method="POST">
+                 <input type="hidden" name="custId" value="">
+                </ul><button type="submit" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</button>
+              </form>
+            <%}else{%>
+            </ul><a style="color:black;pointer-events: none;opacity:0.5;"href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+          <%}%>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

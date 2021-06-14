@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Account</title>
+	<link rel="stylesheet" type="text/css" href="/css/account.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="icon" type="" href="images/logIn.ico">
+	<style type="text/css">
+		body{
+			background-image: none;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/"><i class="fas fa-pizza-slice"></i></a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="/#contact-title">Contact Us</a></li>
+				<% if(loggedIn){%>
+				<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+				<li><a href="/cart"><i class="fas fa-cart-plus"></i>Cart</a></li>
+				<%}else{%>
+				<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+				<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+				<%}%>
+			</ul>
+		</nav>
+		<nav class="nav-mob">
+			<div class="nav-mob-div">
+				<div>
+					<a class="brand"href="#"><i class="fas fa-pizza-slice"></i></a>
+					<a href="#"onclick="myFunction()"><i class="fas fa-bars"></i></a>
+				</div>
+			</div>
+			<div class="myLinks">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/#contact-title">Contact Us</a></li>
+					<% if(loggedIn){%>
+					<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+					<li><a href="/cart"><i class="fas fa-cart-plus"></i>Cart</a></li>
+					<%}else{%>
+					<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+					<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+					<%}%>
+				</ul>
+  			</div>
+		</nav>
+	</header>
+	<div class="container"style="margin-top:80px; background-color:red;">
+    <div class="row">
+        <div class="col">
+        	<h2>
+                        <img height="80px"width="80px" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png" alt="" title="">
+              <%=locals.user.email%></h2>
+        </div>
+        <div class="col">
+        	<%if(locals.user.address.length!=0){%>
+        	<%for(i of locals.user.address){%>
+        		<p><%=i.name%></p>
+        		<p><%=i.phone%></p>
+        		<p><%=i.details%>,<%=i.area%>,<%=i.pincode%></p>
+        		<a href='<%="/address/delete/"+i._id%>'>Delete</a>
+        		<%}%>
+        <%}else{%>
+        		<h1>Address</h1>
+        		<form action="/account/address"method="POST">
+        			<input type="text" name="name" required placeholder="Name">
+        			<input type="text" name="phone" required placeholder="Phone">
+        			<input type="text" name="area" required placeholder="Area">
+        			<input type="text" name="allDetails"required placeholder="Address Details">
+        			<input type="number" name="zip"placeholder="Pincode">
+        			<input type="text" name="city"placeholder="city">
+        			<input type="text" name="state"placeholder="state">
+        			<button type="submit">Add Address</button>
+        		</form>
+        		<%}%>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/js/home.js"></script>
+
+</body>
+</html> 

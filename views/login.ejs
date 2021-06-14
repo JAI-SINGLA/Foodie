@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LogIn</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="icon" type="" href="images/logIn.ico">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="/"><i class="fas fa-pizza-slice"></i></a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="#contact-title">Contact Us</a></li>
+				<% if(loggedIn){%>
+				<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+				<li><a href="/user/cart"><i class="fas fa-user-plus"></i>Cart</a></li>
+				<%}else{%>
+				<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+				<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+				<%}%>
+			</ul>
+		</nav>
+		<nav class="nav-mob">
+			<div class="nav-mob-div">
+				<div>
+					<a class="brand"href="#"><i class="fas fa-pizza-slice"></i></a>
+					<a href="#"onclick="myFunction()"><i class="fas fa-bars"></i></a>
+				</div>
+			</div>
+			<div class="myLinks">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/#contact-title">Contact Us</a></li>
+					<% if(loggedIn){%>
+					<li><a href="/user/account"><i class="fas fa-user"></i>My</a></li>
+					<li><a href="/user/cart"><i class="fas fa-user-plus"></i>Cart</a></li>
+					<%}else{%>
+					<li><a href="/logIn"><i class="fas fa-user"></i>LogIn</a></li>
+					<li><a href="/signup"><i class="fas fa-user-plus"></i>SignUp</a></li>
+					<%}%>
+				</ul>
+  			</div>
+		</nav>
+	</header>
+	<main>
+		<h1 id="user-login">User LogIn </h1>
+		<h1><i class="fas fa-sign-in-alt"></i></h1>
+		<div>
+			<form action="/login"method="POST">
+				<input type="email" name="email"id="email"placeholder="Email" required>
+				<input type="password" name="password"id="password"placeholder="Password"required>
+				<button type="submit">LogIn</button>
+			</form>
+			<p>New user Register here <a href="/signup">SignUp</a></p>
+		</div>
+
+
+
+	</main>
+	<script type="text/javascript" src="/js/home.js"></script>
+
+</body>
+</html>

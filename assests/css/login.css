@@ -1,0 +1,135 @@
+body{
+	margin:0;
+	background-image: url("https://static.toiimg.com/photo/64698744.cms");
+	background-size: 100% 120%;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+nav{
+	background-color: red;
+	position: fixed;
+	margin-top:0;
+	top:0;
+	width:100%;
+	opacity: 0.9;
+}
+nav ul{
+	list-style-type: none;
+	text-align: center;
+	margin:0;
+}
+nav ul li{
+	font-size: 1.2rem;
+	text-decoration: none;
+	margin-right: 8%;
+	padding: 15px;
+	display: inline-block;
+}
+nav ul li a{
+	color:white;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	line-height: 1.1rem;
+	padding:10px;
+	text-decoration: none;
+	transition-duration: 1s;
+}
+nav ul li a:hover{
+	color: grey;
+}
+
+/*adding mob header*/
+.nav-mob{
+	display: none;
+	position: fixed;
+	margin-top:0;
+	top:0;
+	width:100%;
+	opacity: 0.9;
+	color: white;
+}
+.nav-mob-div{
+	background-color: red;
+}
+.nav-mob-div div{
+	font-size: 1rem;
+	width:80%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+}
+.nav-mob div a{
+	color: white;
+	padding: 0px;
+}
+.brand{
+	margin-right: 10%;
+}
+.myLinks{
+	display: none;
+	width:0px;
+}
+.nav-mob-toggler{
+	display: block;
+	width:200px;
+	background-color: red;
+	position: absolute;
+	right:0;
+	display: block;
+}
+@media only screen and (max-width: 1080px) {
+  nav{
+    display: none
+  }
+  .nav-mob{
+  	display: block;
+  }
+}
+#user-login{
+	margin-top: 25vh;
+	color:white;
+	font-size:2.5rem;
+	font-weight: bold;
+	font-family: cursive;
+}
+h1{
+	font-size: 3.5rem;
+	color:white;
+
+}
+
+main{
+	width:30vw;
+	margin:auto;
+	margin-top:5vh;
+}
+@media only screen and (max-width:720px){
+	main{width:70vw;}
+}
+input{
+	display: block;
+	font-size: 1.2rem;
+	padding:0.6rem;
+	margin-bottom: 20px;
+	border-radius:0.4rem;
+	margin-left: auto;
+	margin-right:auto;
+	width:50%;
+}
+button[type="submit"]{
+	font-size:1.2rem;
+	text-align: center;
+	padding:8px;
+	border-radius:5px;
+	width:55%;
+	letter-spacing: 0.1em;
+	transition: background-color 0.5s;
+}
+button[type="submit"]:hover{
+	background-color: #b3b3b3;
+}
+p{
+	color:white;
+	font-size:1.1rem;
+}
