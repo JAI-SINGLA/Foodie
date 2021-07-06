@@ -70,7 +70,7 @@
                   <%currentFlag=0;%>
                   <%break;%>
                   <%}%>
-                  <%if(j.pincode==locals.user.address[0].pincode && j.area==locals.user.address[0].area){%>
+                  <%if(j.pincode==locals.user.address[0].pincode && j.area.split(" ").join("").toLowerCase()==locals.user.address[0].area.split(" ").join("").toLowerCase()){%>
                     <%deliveryPrice+=j.price;%>
                     <% totalPrice+=(quantity[i]*item[i].itemPrice);%>
                     <%deliveryRes.push(restaurantName[i].id);%>
@@ -129,7 +129,7 @@
           <div class="p-4">
             <!-- <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p> -->
             <%if(locals.user.address.length==0){%>
-            <p class="font-italic mb-4">Hi! Add Address First <a href="">Add Address</a></p>
+            <p class="font-italic mb-4">Hi! Add Address First <a href="/address">Add Address</a></p>
           <%}else if(flag==0){%>
               <p class="font-italic mb-4" style="color:red">Hi! There are some Problem with Delivery! Please review you cart.</p>
             <%}else{%>
@@ -144,7 +144,6 @@
                 <h5 class="font-weight-bold"><%= parseInt(deliveryPrice)+parseInt(totalPrice)%></h5>
               </li>
               <%if(flag && parseInt(totalPrice)>0){%>
-              <%=allDetails%>
               <form action="/paynow" method="POST">
                  <input type="hidden" name="custId" value="">
                 </ul><button type="submit" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</button>

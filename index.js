@@ -456,7 +456,7 @@ app.post('/paynow', [parseUrl, parseJson], async(req, res) => {
 			// console.log(restaurant);
 			// console.log(req.user.address[0].pincode);
 			for(k of restaurant.delivery){
-				if(k.pincode==req.user.address[0].pincode && k.area==req.user.address[0].area){
+				if(k.pincode==req.user.address[0].pincode && k.area.split(" ").join("").toLowerCase()==req.user.address[0].area.split(" ").join("").toLowerCase()){
 					console.log("delivery available");
 					specificOrder.deliveryTime=k.time;
 					flag=1;
@@ -538,7 +538,7 @@ app.post('/paynow', [parseUrl, parseJson], async(req, res) => {
 
             /* Find your MID in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys */
     
-            "MID": "XWdbcZ52997974087537",
+            "MID": "MID",
 
 
             /* Find your WEBSITE in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys */
@@ -580,7 +580,7 @@ app.post('/paynow', [parseUrl, parseJson], async(req, res) => {
          * Generate checksum for parameters we have
          * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
          */
-            checksum_lib.genchecksum(paytmParams, "war1bWLyTR6%s4Ae", function (err, checksum) {
+            checksum_lib.genchecksum(paytmParams, "MKEY", function (err, checksum) {
 
 
             /* for Staging */
@@ -633,7 +633,7 @@ app.post('/callback', (req, res) => {
      * Verify checksum
      * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
      */
-    var isValidChecksum = checksum_lib.verifychecksum(paytmParams, "war1bWLyTR6%s4Ae", paytmChecksum);
+    var isValidChecksum = checksum_lib.verifychecksum(paytmParams, "MID", paytmChecksum);
 
 
     if (isValidChecksum) {
