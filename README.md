@@ -1,4 +1,4 @@
-# Foody
+# Foodie
 Online Food Selling and Ordering Web Application
 
 
